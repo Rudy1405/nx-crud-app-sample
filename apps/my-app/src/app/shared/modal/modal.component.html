@@ -1,0 +1,6 @@
+<p-dialog [(visible)]="visible" [modal]="true" [closable]="true" [header]="header">
+  <p>{{ content }}</p>
+  <p-footer>
+    <button pButton type="button" label="OK" (click)="hide()"></button>
+  </p-footer>
+</p-dialog>

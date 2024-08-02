@@ -1,0 +1,7 @@
+<p-dialog [(visible)]="visible" [modal]="true" [closable]="false" [header]="'Confirmation'">
+  <p>{{ message }}</p>
+  <p-footer>
+    <button pButton type="button" label="Yes" (click)="confirmAction()"></button>
+    <button pButton type="button" label="No" (click)="hide()"></button>
+  </p-footer>
+</p-dialog>

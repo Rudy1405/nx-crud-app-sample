@@ -1,0 +1,13 @@
+<button pButton type="button" label="Add Category" (click)="openModal()"></button>
+<app-data-grid [data]="categories" [columns]="columns"></app-data-grid>
+
+<app-modal [(visible)]="showModal" header="Category Details" [content]="selectedCategory | json">
+  <p-footer>
+    <button pButton type="button" label="Save" (click)="saveCategory()"></button>
+    <button pButton type="button" label="Cancel" (click)="showModal=false"></button>
+  </p-footer>
+</app-modal>
+
+<app-confirmation-dialog [(visible)]="showConfirmDialog" [message]="confirmMessage"
+                         (confirm)="confirmSave()" (cancel)="showConfirmDialog=false">
+</app-confirmation-dialog>

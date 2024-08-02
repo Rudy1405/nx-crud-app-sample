@@ -1,0 +1,13 @@
+<button pButton type="button" label="Add User" (click)="openModal()"></button>
+<app-data-grid [data]="users" [columns]="columns"></app-data-grid>
+
+<app-modal [(visible)]="showModal" header="User Details" [content]="selectedUser | json">
+  <p-footer>
+    <button pButton type="button" label="Save" (click)="saveUser()"></button>
+    <button pButton type="button" label="Cancel" (click)="showModal=false"></button>
+  </p-footer>
+</app-modal>
+
+<app-confirmation-dialog [(visible)]="showConfirmDialog" [message]="confirmMessage"
+                         (confirm)="confirmSave()" (cancel)="showConfirmDialog=false">
+</app-confirmation-dialog>
