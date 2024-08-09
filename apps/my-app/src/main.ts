@@ -11,13 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin'; 
 import { AppState } from './app/shared/state/app.state';
 
 const ngxsProviders = [
   importProvidersFrom(
-    NgxsModule.forRoot([AppState]),
+    NgxsModule.forRoot([AppState]), // Incluir AppState aquí
     NgxsLoggerPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsStoragePluginModule.forRoot({ keys: ['app.token', 'app.currentItem'] }) // Configurar el plugin de almacenamiento
   )
 ];
 
