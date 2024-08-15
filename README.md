@@ -14,6 +14,14 @@ comes with a LSP for Vim users.
 
 Run `npx nx serve my-angular-app` to start the development server. Happy coding!
 
+## UPDATE ON THIS APP
+No nx commands can be run, it throws the error `Module not found: Error: Can't resolve '@angular/common`  
+no `nx serve` , `nx build` or `nx start` 
+There is an error regarding the external lib dependency may be, also try run the build with `nx build my-app --buildLibsFromSource` but got the error: `'buildLibsFromSource' is not found in schema` 
+
+## TODO: 
+Fix the build error and enhance UI 
+
 ## Build for production
 
 Run `npx nx build my-angular-app` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
