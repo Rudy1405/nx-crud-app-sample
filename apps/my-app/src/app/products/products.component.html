@@ -1,13 +1,25 @@
 <button pButton type="button" label="Add Product" (click)="openModal()"></button>
-<app-data-grid [data]="products" [columns]="columns"></app-data-grid>
 
-<app-modal [(visible)]="showModal" header="Product Details" [content]="selectedProduct | json">
+<!-- Data Grid with Edit and Delete Buttons -->
+<app-data-grid
+  [data]="products"
+  [columns]="columns"
+  (edit)="openModal($event)"
+  (delete)="deleteProduct($event)"
+></app-data-grid>
+
+<!-- Modal for Adding/Editing Product -->
+<app-modal [(visible)]="showModal" header="Product Details" [formConfig]="productForm.value">
   <p-footer>
     <button pButton type="button" label="Save" (click)="saveProduct()"></button>
     <button pButton type="button" label="Cancel" (click)="showModal=false"></button>
   </p-footer>
 </app-modal>
 
-<app-confirmation-dialog [(visible)]="showConfirmDialog" [message]="confirmMessage"
-                         (confirm)="confirmSave()" (cancel)="showConfirmDialog=false">
-</app-confirmation-dialog>
+<!-- Confirmation Dialog for Deletion -->
+<app-confirmation-dialog
+  [(visible)]="showConfirmDialog"
+  [message]="confirmMessage"
+  (confirm)="confirmDelete()"
+  (cancel)="showConfirmDialog=false"
+></app-confirmation-dialog>

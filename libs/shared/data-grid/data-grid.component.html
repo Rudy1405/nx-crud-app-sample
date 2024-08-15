@@ -1,0 +1,17 @@
+<p-table [value]="data">
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let col of columns">{{ col.header }}</th>
+      <th>Actions</th> <!-- Actions column -->
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td *ngFor="let col of columns">{{ rowData[col.field] }}</td>
+      <td>
+        <button pButton type="button" icon="pi pi-pencil" (click)="edit.emit(rowData)" label="Edit"></button>
+        <button pButton type="button" icon="pi pi-trash" (click)="delete.emit(rowData)" label="Delete"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

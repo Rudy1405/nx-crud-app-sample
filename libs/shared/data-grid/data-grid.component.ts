@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TableModule} from 'primeng/table';
 
@@ -10,8 +10,9 @@ import {TableModule} from 'primeng/table';
   styleUrl: './data-grid.component.css',
 })
 export class DataGridComponent {
-  @Input()
-  data: any[] = [];
-  @Input()
-  columns: any[] = [];
+  @Input() data: any[] = [];
+  @Input() columns: any[] = [];
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
+
 }

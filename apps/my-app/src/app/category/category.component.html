@@ -1,7 +1,7 @@
 <button pButton type="button" label="Add Category" (click)="openModal()"></button>
-<app-data-grid [data]="categories" [columns]="columns"></app-data-grid>
+<app-data-grid [data]="categories" [columns]="columns" (edit)="openModal($event)" (delete)="deleteCategory($event)"></app-data-grid>
 
-<app-modal [(visible)]="showModal" header="Category Details" [content]="selectedCategory | json">
+<app-modal [(visible)]="showModal" header="Category Details" [formConfig]="categoryForm.value">
   <p-footer>
     <button pButton type="button" label="Save" (click)="saveCategory()"></button>
     <button pButton type="button" label="Cancel" (click)="showModal=false"></button>
@@ -9,5 +9,5 @@
 </app-modal>
 
 <app-confirmation-dialog [(visible)]="showConfirmDialog" [message]="confirmMessage"
-                         (confirm)="confirmSave()" (cancel)="showConfirmDialog=false">
+                         (confirm)="confirmDelete()" (cancel)="showConfirmDialog=false">
 </app-confirmation-dialog>

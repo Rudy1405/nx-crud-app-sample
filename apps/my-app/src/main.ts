@@ -12,7 +12,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin'; 
-import { AppState } from './app/shared/state/app.state';
+import { AppState } from '../../../libs/shared/state/app.state';
 
 const ngxsProviders = [
   importProvidersFrom(

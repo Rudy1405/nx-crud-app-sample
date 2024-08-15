@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataGridComponent } from '../shared/data-grid/data-grid.component';
-import { ModalComponent } from '../shared/modal/modal.component';
+import { DataGridComponent } from '@my-angular-app/shared/data-grid/data-grid.component';
+import { ModalComponent } from '@my-angular-app/shared/modal/modal.component';
 import { ButtonModule } from 'primeng/button';
-import { Store, Select  } from '@ngxs/store';
-import { SetCurrentItem, AppState  } from '../shared/state/app.state';
+import { Store, Select } from '@ngxs/store';
+import { SetCurrentItem, AppState } from '@my-angular-app/shared/state/app.state';
 import { Observable } from 'rxjs';
-import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
-
+import { ConfirmationDialogComponent } from '@my-angular-app/shared/confirmation-dialog/confirmation-dialog.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-category',
   standalone: true,
   imports: [CommonModule, DataGridComponent, ModalComponent, ButtonModule, ConfirmationDialogComponent],
   templateUrl: './category.component.html',
-  styleUrl: './category.component.css',
+  styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
   categories = [
@@ -31,34 +31,43 @@ export class CategoryComponent implements OnInit {
   showConfirmDialog = false;
   selectedCategory: any = {};
   confirmMessage = '';
+  categoryForm!: FormGroup;
 
   @Select(AppState.getCurrentItem) currentItem$: Observable<any> | undefined;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.categoryForm = this.fb.group({
+      id: ['', Validators.required],
+      name: ['', Validators.required],
+    });
+
     this.currentItem$?.subscribe(item => {
       if (item) {
         this.selectedCategory = item;
         this.showModal = true;
+        this.categoryForm.patchValue(this.selectedCategory);
       }
     });
   }
 
-
   openModal(category?: any) {
     this.selectedCategory = category ? { ...category } : {};
     this.showModal = true;
+    this.categoryForm.reset(this.selectedCategory);
     this.store.dispatch(new SetCurrentItem(this.selectedCategory));
   }
+  
 
   saveCategory() {
-    this.confirmMessage = 'Do you want to save the changes?';
-    this.showConfirmDialog = true;
+    if (this.categoryForm.valid) {
+      this.confirmMessage = 'Do you want to save the changes?';
+      this.showConfirmDialog = true;
+    }
   }
 
   confirmSave() {
-    // Save category logic
     this.showModal = false;
     this.store.dispatch(new SetCurrentItem(null));
   }
@@ -70,7 +79,7 @@ export class CategoryComponent implements OnInit {
   }
 
   confirmDelete() {
-    // Delete category logic
+    this.categories = this.categories.filter(cat => cat.id !== this.selectedCategory.id);
     this.showConfirmDialog = false;
     this.store.dispatch(new SetCurrentItem(null));
   }

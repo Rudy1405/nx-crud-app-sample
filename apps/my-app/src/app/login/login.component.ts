@@ -5,7 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { Store,Select } from '@ngxs/store';
-import { SetToken, AppState  } from '../shared/state/app.state';
+import { SetToken, AppState  } from '@my-angular-app/shared/state/app.state';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 

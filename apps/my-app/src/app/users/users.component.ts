@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataGridComponent } from '../shared/data-grid/data-grid.component';
-import { ModalComponent } from '../shared/modal/modal.component';
+import { DataGridComponent } from '@my-angular-app/shared/data-grid/data-grid.component';
+import { ModalComponent } from '@my-angular-app/shared/modal/modal.component';
 import { ButtonModule } from 'primeng/button';
 import { Store, Select } from '@ngxs/store';
-import { SetCurrentItem, AppState } from '../shared/state/app.state';
+import { SetCurrentItem, AppState } from '@my-angular-app/shared/state/app.state';
 import { Observable } from 'rxjs';
-import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '@my-angular-app/shared/confirmation-dialog/confirmation-dialog.component';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confi
 })
 export class UsersComponent implements OnInit {
   users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 1, name: 'John Doe', email: 'john@example.com' }, 
     { id: 2, name: 'Jade Smith', email: 'jade@example.com' }
   ];
 
